@@ -11,7 +11,7 @@ class Movies:
         self.play_counter+=1
 
     def __repr__(self):
-        return f"(self.title,publication date)"
+        return f"{self.title} {self.publication_date}"
     
     def __str__(self):
         return f"{self.title} {self.publication_date}"
@@ -34,7 +34,7 @@ class Tv_series(Movies):
         self.playcounter *=10
 
     def __repr__(self):
-        return f"(self.episode_number,season_number,)"
+        return f"{self.season_number} {self.episode_number}"
 
     def __str__(self):
         return f"{self.season_number} {self.episode_number}"
@@ -48,23 +48,40 @@ class Library:
         self.library =[]
     def add(self,item):
         self.library.append(item)
-        
-library= Library()
-library.add("Matrix")
-library.add("John Wick")
-library.add("Predator")
+    def get_movies(self):
+        temp = []
+        for item in self.library:
+            if isinstance(item,Movies):
+                temp.append(item)
+        return temp
 
-library2= Library()
-library2.add("Game Of Thrones")
-library2.add("The Walking Dead")
-library2.add("Vikingowie")
+    def get_series(self):
+        temp2 = []
+        for item in self.library:
+            if isinstance(item,Tv_series):
+                temp2.append(item)
+        return temp2
+    
+movie1 = Movies(title="Matrix",publication_date=1999,species="sc_fi",number_of_plays="1010")
+library= Library()
+library.add(movie1)
+
+movie2 = Movies(title="John Wick",publication_date=2014,species="action",number_of_plays="2015")
+library= Library()
+library.add(movie2)
+
+tv_serie = Tv_series(season_number="S01 Game Of Thrones",episode_number="E01",title="Game Of Thrones",publication_date="2011",species="sc_fi",number_of_plays="1000")
+library= Library()
+library.add(tv_serie)
+
+
+
 print(library.library)
-print(library2.library)
+
 
 def generate_views(self):
     random.choice(self.library)
-    
-
+  
 Title1=["Matrix","John Wick","Predator"]
 Title2=["Game Of Thrones","Vikingowie","The Walking Dead"]
 def search():
@@ -78,24 +95,3 @@ name_iterator = iter(Title1)
 print(name_iterator)
 for i in name_iterator:
         print(i)
-
-def get_movies(Movies):
-
-    Movies = ["Matrix","John Wick","Predator"]
-    Movies.sort()
-    print(Movies)
-get_movies("Matrix")
-
-
-def get_series(Tv_series):
-
-    Tv_series = ["Vikingowie","Game Of Thrones","The Walking Dead"]
-    Tv_series.sort()
-    print(Tv_series)
-get_series("Game Of Thrones")
-
-def top_titles(self):
-    most_popular_title(self.library)
-    most_popular_title = ["Matrix","John Wick","The Walking Dead"]
-
-    return(most_popular_title)
